@@ -1,0 +1,20 @@
+<div class=" mx-auto" style="width: 50rem;">
+    <form class="w-50 mx-auto  text-dark " [formGroup]="status" #ref="ngForm"
+        (ngSubmit)="onSearch()">
+
+        <div class="mb-3">
+            <label for="cid" class="form-label display-6">Enter Compliant ID:</label>
+            <input type="text" formControlName="id" id="id" class="form-control">
+        <!--validations-->
+            <div *ngIf="
+        id.invalid &&
+        (id?.dirty || id?.touched || ref.submitted)
+      " class="text-danger">
+                <p *ngIf="id?.errors?.['required']">Complaint ID is required</p>
+            </div>
+            
+        </div>
+        <button class="btn btn-primary d-block mx-auto">Search</button>
+        </form>
+        <div class="text-center text-light">{{appStatus}}</div>
+</div>

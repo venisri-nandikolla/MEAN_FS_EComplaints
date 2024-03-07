@@ -1,0 +1,96 @@
+<p class="display-3 text-center text-dark">CUSTOMER COMPLAINT FORM</p>
+<h3 class="text-center">Complaint Already Raised? Check Your Status <a routerLink="/status">Click Here!</a></h3>
+<div class="card bg-dark text-light w-50 mx-auto mb-5">
+    <form class="w-75 mx-auto mt-5" [formGroup]="complaintForm" #ref="ngForm" (ngSubmit)="onSubmitComplaint()">
+        <!-- First name -->
+        <div class="name">
+            <div class="mb-3 mx-auto">
+                <label for="fname" class="form-label">First Name</label>
+                <input id="fname" type="text" formControlName="fname" class="form-control">
+                <div *ngIf="fname.invalid &&(fname.dirty || fname.touched || ref.submitted )" class="text-danger">
+                    <p *ngIf="fname.errors?.['required']">First Name is required</p>
+
+                </div>
+            </div>
+            <div class="mb-3 mx-auto">
+                <label for="lname" class="form-label">Last Name</label>
+                <input id="lname" class="form-control" type="text" formControlName="lname">
+                <div *ngIf="lname.invalid &&(lname.dirty || lname.touched || ref.submitted )" class="text-danger">
+                    <p *ngIf="lname?.errors?.['required']">Last name is required</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input id="email" class="form-control" type="text" formControlName="email">
+            <div *ngIf="
+              email?.invalid &&
+              (email?.dirty || email?.touched || ref.submitted)
+            " class="text-danger">
+                <p *ngIf="email?.errors?.['required']">Email ID is required</p>
+                <p *ngIf="email?.errors?.['email']">Enter valid Email</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="phno" class="form-label">Phone Number</label>
+            <input id="phno" class="form-control" type="tel" formControlName="phno">
+            <div *ngIf="
+              phno.invalid &&
+              (phno.dirty || phno.touched || ref.submitted)
+            " class="text-danger">
+                <p *ngIf="phno ?.errors?.['required']">Phone Number is required</p>
+            </div>
+
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Complaint Date</label>
+            <input id="date" class="form-control" type="date" formControlName="date">
+            <div *ngIf="
+              date?.invalid &&
+              (date.dirty || date.touched || ref.submitted)
+            " class="text-danger">
+                <p *ngIf="date ?.errors?.['required']">Complaint Date is required</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="reason" class="form-label">Reason For The Complaint</label>
+            <select class="form-control" formControlName="reason">
+                <option value="Slow Service Delivery">Slow Service Delivery</option>
+                <option value="Money Deduction Issue">Money Deduction Issue</option>
+                <option value="Issue with staff">Issue with staff</option>
+                <option value="Check Bounce Issue">Check Bounce Issue</option>
+                <option value="Online Banking Issue">Online Banking Issue</option>
+                <option value="others">others</option>
+
+            </select>
+            <div *ngIf="
+              reason.invalid &&
+              (reason.dirty || reason.touched || ref.submitted)
+            " class="text-danger">
+                <p *ngIf="reason ?.errors?.['required']">Please select the appropriate reason</p>
+            </div>
+        </div>
+        <div>
+            <label for="details" class="form-label">Complaint Details</label>
+            <textarea id="details" class="form-control" formControlName="details" rows="3" cols="60"></textarea>
+            <div *ngIf="
+              details.invalid &&
+              (details.dirty || details.touched || ref.submitted)
+            " class="text-danger">
+                <p *ngIf="details ?.errors?.['required']">Complaint Details are required</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-success d-block mx-auto mb-3" (click)="onclickk()">Submit</button>
+        </div>
+    </form>
+    <div class="status">{{status}}
+    </div>
+    <div class="checkstatus" *ngIf="statuss===true">
+        {{checkStatus}}
+
+        <a class="text-light" routerLink="/status">Click Here!</a>
+
+    </div>
+</div>

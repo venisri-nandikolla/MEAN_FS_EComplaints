@@ -1,0 +1,104 @@
+{
+  "users": [
+    {
+      "id": "5a8d",
+      "username": "venu",
+      "password": "venu",
+      "email": "venisri@gmail.com",
+      "dob": "2024-01-23"
+    },
+    {
+      "id": "5aba",
+      "username": "GANA",
+      "password": "asdf",
+      "email": "icecream@gmail.com",
+      "dob": "2024-02-13"
+    },
+    {
+      "id": "b9bc",
+      "username": "srii",
+      "password": "srii",
+      "email": "venisri@gmail.com",
+      "dob": "2024-02-29"
+    },
+    {
+      "id": "847c",
+      "username": "manu",
+      "password": "manu",
+      "email": "manu@mail.com"
+    },
+    {
+      "id": "df58",
+      "username": "cherry",
+      "password": "cherry",
+      "email": "cherry@mail.com",
+      "dob": "2024-03-01"
+    }
+  ],
+  "admins": [
+    {
+      "id": "10b6",
+      "username": "gana",
+      "password": "zxcv",
+      "email": "qwer@mail.com",
+      "dob": "2024-02-18"
+    },
+    {
+      "id": "f494",
+      "username": "charan",
+      "password": "charan",
+      "email": "charan@mail.com",
+      "dob": "2024-03-21"
+    },
+    {
+      "id": "9618",
+      "username": "charan",
+      "password": "charan",
+      "email": "cherry@mail.com",
+      "dob": "2024-03-13"
+    }
+  ],
+  "customers": [
+    {
+      "id": "4df1",
+      "fname": "vde",
+      "lname": "vvhjh",
+      "email": "venisri@gmail.com",
+      "phno": "123456",
+      "date": "2024-01-23",
+      "reason": "Check Bounce Issue",
+      "details": "dhgh"
+    },
+    {
+      "id": "c7da",
+      "fname": "saicharan",
+      "lname": "jwhehfgv",
+      "email": "kulfiii@gana",
+      "phno": "123456",
+      "date": "2024-02-12",
+      "reason": "Issue with staff",
+      "details": " vjhkjhxilukjhgf"
+    },
+    {
+      "id": "1f08",
+      "fname": "gana",
+      "lname": "nakkina",
+      "email": "kulfiii@gana",
+      "phno": "1234567",
+      "date": "2024-02-25",
+      "reason": "others",
+      "details": "asfghjkjhgfghj",
+      "status": "Open"
+    },
+    {
+      "id": "06f1",
+      "fname": "saicharan",
+      "lname": "priya",
+      "email": "venisri@gmail.com",
+      "phno": "12345678",
+      "date": "2024-02-29",
+      "reason": "others",
+      "details": "wsdfghjlkjnmm,n mn"
+    }
+  ]
+}

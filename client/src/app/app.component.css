@@ -1,0 +1,5 @@
+.image{
+    background-image: url(../assets/bg.jpg);
+    min-height: 90vh;
+    background-size: cover;
+}

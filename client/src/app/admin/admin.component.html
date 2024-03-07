@@ -1,0 +1,24 @@
+<h3 class="text-center" style="color:black;">Pending Complaints</h3>
+<div class="merge container mx-auto">  
+  <div class="row row-cols-sm-2 row-cols-md-3 g-4">
+<div class="card mx-4" style="width: 18rem;" *ngFor="let complaint of complaints | async ">
+    <div class="card-body">
+      <h5 class="card-title">Complaint ID:{{complaint.id}}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Name:{{complaint.fname}}{{complaint.lname}}</h6>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Reason:{{complaint.reason}}</h6>
+      <p class="card-text mb-2 ">Complaint Details:{{complaint.details}}</p>
+      @if (status){
+        <div>
+      <button class="btn btn-outline-success mx-3" (click)="onOpen(complaint.id,complaint)">Open</button>
+      
+      <button class="btn btn-outline-danger mx-3" (click)="onClose(complaint.id)">Close</button>
+      </div>}
+      @else{
+        <h5>{{openStatus}}</h5>
+      }
+      
+      <!-- <h6 class="card-subtitle mb-2">{{stat}}</h6> -->
+    </div>
+  </div>
+</div>
+</div>
