@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import {  FormBuilder,Validators,} from '@angular/forms'
-import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { Customer } from '../models/Customer';
+import { ComplaintService } from '../../services/complaint.service';
 
 @Component({
   selector: 'app-complaintform',
@@ -39,7 +39,7 @@ export class ComplaintformComponent {
   }
  
 fb:FormBuilder=inject(FormBuilder);
-userService=inject(UserService)
+complaintService=inject(ComplaintService)
 router=inject(Router)
  
 complaintForm=this.fb.group({
@@ -55,7 +55,7 @@ complaintForm=this.fb.group({
 currentComplaint:any
 complaintsList:any;
 getAllComplaints(){
-  this.userService.getComplaints().subscribe((res)=>{
+  this.complaintService.getComplaints().subscribe((res)=>{
     this.complaintsList = res.payload;
     console.log(this.complaintsList)
     this.currentComplaint= this.complaintsList[this.complaintsList.length -1];
@@ -76,7 +76,7 @@ changeStatus(){
 onSubmitComplaint(){
   let {fname,lname,email,phno,date,reason,details}=this.complaintForm.value;
   let newCustomer=new Customer(fname,lname,email,phno,date,reason,details);
-  this.userService.addComplaint(newCustomer).subscribe(
+  this.complaintService.addComplaint(newCustomer).subscribe(
     (res)=>{
       console.log(res)
       if(this.complaintForm.status==='VALID'){

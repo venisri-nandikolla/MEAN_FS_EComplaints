@@ -26,8 +26,8 @@
             <input id="email" class="form-control" type="text" formControlName="email">
             <div *ngIf="
               email?.invalid &&
-              (email?.dirty || email?.touched || ref.submitted)
-            " class="text-danger">
+              (email?.dirty || email?.touched || ref.submitted)"
+              class="text-danger">
                 <p *ngIf="email?.errors?.['required']">Email ID is required</p>
                 <p *ngIf="email?.errors?.['email']">Enter valid Email</p>
             </div>

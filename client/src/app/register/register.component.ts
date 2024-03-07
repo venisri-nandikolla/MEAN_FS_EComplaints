@@ -5,7 +5,7 @@ import {Router} from '@angular/router'
 import { UserService } from '../../services/user.service';
 import { Admin } from '../models/admins';
 import { User } from '../models/users';
-
+import { AdminService } from '../../services/admin.service';
  
 @Component({
   selector: 'app-register',
@@ -18,6 +18,8 @@ export class RegisterComponent {
   get username(){
     return this.registerForm.get('username')
   }
+  
+  
   get password(){
     return this.registerForm.get('password')
   }
@@ -33,6 +35,7 @@ export class RegisterComponent {
   duplicateAdminStatus:boolean=false;
   router=inject(Router)
   userService=inject(UserService);
+  adminService=inject(AdminService)
   registerForm:FormGroup;
   fb:FormBuilder=inject(FormBuilder);
  
@@ -72,7 +75,7 @@ export class RegisterComponent {
       else if(formData.registerType==='admin'){
         let {username,password,email,dob}=this.registerForm.value;
         let newAdmin=new Admin(username,password,email,dob);
-        this.userService.createAdminUser(newAdmin).subscribe(
+        this.adminService.createAdminUser(newAdmin).subscribe(
           (res)=>{
             console.log("admin",res)
             //navigate to login

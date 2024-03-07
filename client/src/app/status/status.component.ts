@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../../services/user.service';
+import { ComplaintService } from '../../services/complaint.service';
 
 @Component({
   selector: 'app-status',
@@ -9,7 +9,7 @@ import { UserService } from '../../services/user.service';
 })
 export class StatusComponent {
   fb = inject(FormBuilder)
-  userService = inject(UserService)
+  complaintService = inject(ComplaintService)
 
   status = this.fb.group({
     id: ['', Validators.required]
@@ -22,7 +22,7 @@ export class StatusComponent {
   appStatus:string;
   //statuss:string
   onSearch(){
-    this.userService.getComplaints().subscribe((lists)=>{
+    this.complaintService.getComplaints().subscribe((lists)=>{
       console.log(lists)
       if(lists.length==0){
         this.appStatus="Your complaint is CLOSED"

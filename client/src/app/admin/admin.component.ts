@@ -1,5 +1,5 @@
 import { Component ,OnInit,inject, ChangeDetectorRef} from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { ComplaintService } from '../../services/complaint.service';
 import { Customer } from '../models/Customer';
 
 @Component({
@@ -8,25 +8,26 @@ import { Customer } from '../models/Customer';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent implements OnInit {
-  userService=inject(UserService)
+  compliantService=inject(ComplaintService)
   cdr= inject (ChangeDetectorRef)
   complaints:any;
   status:boolean=true;
   openStatus:string;
   ngOnInit(): void {
-    this.complaints=this.userService.getComplaints()
+    this.compliantService.getComplaints().subscribe({
+      next:(res)=>{
+        this.complaints = res.payload;
+      }
+    })
   }
   
 onClose(id:string){
-  this.userService.deleteComplaint(id).subscribe((res)=>console.log(res),(err)=>{console.log(err)});
-  
-  this.cdr.detectChanges();
-
+  this.compliantService.deleteComplaint(id).subscribe((res)=>console.log(res),(err)=>{console.log(err)});
 }
 onOpen(id:string,Complaint:Customer){
   
   Complaint['status']="Open";
-  this.userService.updateComplaint(id,Complaint).subscribe(
+  this.compliantService.updateComplaint(id,Complaint).subscribe(
     (res)=>{
       this.status=false;
       this.openStatus=`Application Already Opened`
