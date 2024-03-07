@@ -40,6 +40,7 @@
               (phno.dirty || phno.touched || ref.submitted)
             " class="text-danger">
                 <p *ngIf="phno ?.errors?.['required']">Phone Number is required</p>
+                <p *ngIf="phno ?.errors?.['pattern']"> Enter valid Phone Number </p>
             </div>
 
         </div>

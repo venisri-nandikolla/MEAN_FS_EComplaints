@@ -46,7 +46,7 @@ complaintForm=this.fb.group({
   fname:['',[Validators.required]],
   lname:['',[Validators.required]],
   email:['',[Validators.required,Validators.email]],
-  phno:['',[Validators.required]],
+  phno:['',[Validators.required,Validators.pattern(/^[6-9]{1}[0-9]{9}$/)]],
   date:['',[Validators.required]],
   reason:['',[Validators.required]],
   details:['',[Validators.required]],
