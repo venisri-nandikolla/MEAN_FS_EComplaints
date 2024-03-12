@@ -32,8 +32,7 @@ userApp.put("/user", expressAsyncHandler(updateUser));
 //delete user by username
 userApp.delete("/user/:username", expressAsyncHandler(removeUser));
  
-//protectred route
-userApp.get('/user-sensitive-data',verifyToken,expressAsyncHandler(getSensitiveData))
+
  
 //export userApp
 module.exports = userApp;
