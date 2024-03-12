@@ -1,5 +1,6 @@
 <p class="display-3 text-center text-dark">CUSTOMER COMPLAINT FORM</p>
 <h3 class="text-center">Complaint Already Raised? Check Your Status <a routerLink="/status">Click Here!</a></h3>
+<h3 *ngIf="alreadyExisted" class="text-center text-danger">{{alreadyExistedMsg}}</h3>
 <div class="card bg-dark text-light w-50 mx-auto mb-5">
     <form class="w-75 mx-auto mt-5" [formGroup]="complaintForm" #ref="ngForm" (ngSubmit)="onSubmitComplaint()">
         <!-- First name -->
@@ -26,8 +27,7 @@
             <input id="email" class="form-control" type="text" formControlName="email">
             <div *ngIf="
               email?.invalid &&
-              (email?.dirty || email?.touched || ref.submitted)"
-              class="text-danger">
+              (email?.dirty || email?.touched || ref.submitted)" class="text-danger">
                 <p *ngIf="email?.errors?.['required']">Email ID is required</p>
                 <p *ngIf="email?.errors?.['email']">Enter valid Email</p>
             </div>
@@ -83,15 +83,8 @@
             </div>
         </div>
         <div class="mb-3">
-            <button class="btn btn-success d-block mx-auto mb-3" (click)="onclickk()">Submit</button>
+            <button class="btn btn-success d-block mx-auto mb-3">Submit</button>
         </div>
     </form>
-    <div class="status">{{status}}
-    </div>
-    <div class="checkstatus" *ngIf="statuss===true">
-        {{checkStatus}}
-
-        <a class="text-light" routerLink="/status">Click Here!</a>
-
-    </div>
+    <div class="status text-center text-light mx-auto">{{status}}</div>
 </div>

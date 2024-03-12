@@ -3,19 +3,19 @@
   <div class="row row-cols-sm-2 row-cols-md-3 g-4">
 <div class="card mx-4" style="width: 20rem;" *ngFor="let complaint of complaints">
     <div class="card-body">
-      <h5 class="card-title">Complaint ID:{{complaint._id}}</h5>
-      <h6 class="card-subtitle mb-2 text-body-secondary">Name:{{complaint.fname}}{{complaint.lname}}</h6>
-      <h6 class="card-subtitle mb-2 text-body-secondary">Reason:{{complaint.reason}}</h6>
-      <p class="card-text mb-2 ">Complaint Details:{{complaint.details}}</p>
-      @if (status){
-        <div>
+      <h5 class="card-title">Complaint ID: {{complaint._id}}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Name: {{complaint.fname}} {{complaint.lname}}</h6>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Reason: {{complaint.reason}}</h6>
+      <p class="card-text mb-2 ">Complaint Details: {{complaint.details}}</p>
+     
+        <div *ngIf="complaint.status==='Progress'" class="d-flex flex-row mx-auto">
       <button class="btn btn-outline-success mx-3" (click)="onOpen(complaint._id,complaint)">Open</button>
       
-      <button class="btn btn-outline-danger mx-3" (click)="onClose(complaint._id)">Close</button>
-      </div>}
-      @else{
-        <h5>{{openStatus}}</h5>
-      }
+      <button class="btn btn-outline-danger mx-3" (click)="onClose(complaint._id,complaint)">Close</button>
+      </div>
+      
+        <h5 *ngIf="complaint.status==='Opened'" class="text-success text-center">Complaint Opened</h5>
+      
       
       <!-- <h6 class="card-subtitle mb-2">{{stat}}</h6> -->
     </div>

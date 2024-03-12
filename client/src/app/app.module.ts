@@ -15,6 +15,7 @@ import { StatusComponent } from './status/status.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { authInterceptor } from './auth.interceptor';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { authInterceptor } from './auth.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgToastModule
   ],
   providers: [provideHttpClient(withFetch()),provideHttpClient(withInterceptors([authInterceptor]))],
   bootstrap: [AppComponent]

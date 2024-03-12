@@ -12,6 +12,11 @@ const getComplaintById = async (req,res)=>{
 }
  
 const createComplaint = async (req,res)=>{
+    let existingComplaint=await Complaint.findOne({email:req.body.email,date:req.body.date})
+    if (existingComplaint!==null){
+        return res.status(200).send({message :"Complaint already created"})
+    }
+    req.body.status="Progress"
     const newComplaint = await Complaint.create(req.body);
     res.status(200).send({ message: "Complaint created", payload: newComplaint });
 }

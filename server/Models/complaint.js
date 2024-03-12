@@ -7,7 +7,8 @@ const complaintSchema=new mongoose.Schema({
     phno:{type:String,required:true},
     date:{type:String,required:true},
     reason:{type:String,required:true},
-    details:{type:String,required:true}
+    details:{type:String,required:true},
+    status:{type:String,required:true}
 })
  
 //create Model(class) for the userSchema

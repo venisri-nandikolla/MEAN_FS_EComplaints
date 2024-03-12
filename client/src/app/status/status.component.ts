@@ -1,15 +1,20 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ComplaintService } from '../../services/complaint.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
   styleUrl: './status.component.css'
 })
-export class StatusComponent {
+export class StatusComponent implements OnInit {
   fb = inject(FormBuilder)
   complaintService = inject(ComplaintService)
+  userService = inject(UserService)
+  router = inject(Router)
+  username: string;
 
   status = this.fb.group({
     id: ['', Validators.required]
@@ -19,29 +24,46 @@ export class StatusComponent {
     return this.status.get('id')
   }
 
-  appStatus:string;
-  //statuss:string
-  onSearch(){
-    this.complaintService.getComplaints().subscribe((lists)=>{
-      console.log(lists)
-      if(lists.length==0){
-        this.appStatus="Your complaint is CLOSED"
+  ngOnInit(): void {
+    this.userService.getCurrentUser().subscribe({
+      next: (res) => {
+        this.username = res.username;
+      },
+      error: (err) => {
+        console.log(err);
       }
-      lists.forEach(list => {
-        //this.statuss = list.status
-        if(list.id==this.status.value.id){
-          
-          if(list.status==="Open"){
-            this.appStatus="Your complaint is OPENED"
-          }else if(list.status===undefined){
-            this.appStatus="Your complaint is in PROGRESS"
-          }else{
-            this.appStatus="Your complaint is CLOSED"
-          }
-        }else{
-          this.appStatus="Your complaint is CLOSED"
+    })
+  }
+
+  navigateBack() {
+    this.router.navigate([`/complaintform/${this.username}`])
+  }
+
+  appStatus: string;
+  //statuss:string
+  onSearch() {
+    this.complaintService.getComplaints().subscribe({
+      next: (res) => {
+        let lists = res.payload;
+        if (lists.length == 0) {
+          this.appStatus = "Enter a valid Complaint ID";
         }
-      });
+        let complaint = lists.find((comp)=>{
+          return comp._id === this.status.value.id;
+        })
+   
+        if(complaint === undefined){
+          this.appStatus = "Enter valid Complaint ID"
+        }else{
+          if (complaint.status === "Opened") {
+            this.appStatus = "Your Complaint is OPENED"
+          } else if (complaint.status === "Progress") {
+            this.appStatus = "Your Complaint is in PROGRESS"
+          }else if (complaint.status === "Closed"){
+            this.appStatus = "Your Complaint is CLOSED"
+          }
+        }
+      }
     })
   }
 }

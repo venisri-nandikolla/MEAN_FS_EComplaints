@@ -20,7 +20,7 @@ complaintApp.get("/complaints/:id",verifyToken, expressAsyncHandler(getComplaint
  
 complaintApp.post("/complaint",verifyToken, expressAsyncHandler(createComplaint));
  
-complaintApp.put("/complaint",verifyToken, expressAsyncHandler(updateComplaint));
+complaintApp.put("/complaint/:id",verifyToken, expressAsyncHandler(updateComplaint));
  
 complaintApp.delete("/complaint/:id",verifyToken, expressAsyncHandler(deleteComplaint));
  
