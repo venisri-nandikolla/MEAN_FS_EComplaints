@@ -18,14 +18,10 @@ export class ComplaintService {
 
 
   deleteComplaint(id: string): Observable<any> {
-    console.log(id)
     return this.httpClient.delete(`http://localhost:4000/complaint-api/complaint/${id}`)
   }
 
-updateComplaint(id:string,Complaint:any):Observable<any>{
-    console.log(id,Complaint)
-  return this.httpClient.put(`http://localhost:4000/complaint-api/complaint/${id}`,Complaint)
-}
-
-  constructor() { }
+  updateComplaint(id:string,Complaint:any):Observable<any>{
+    return this.httpClient.put(`http://localhost:4000/complaint-api/complaint/${id}`,Complaint)
+  }
 }

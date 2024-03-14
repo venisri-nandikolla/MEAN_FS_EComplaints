@@ -9,8 +9,14 @@ const getUsers = async (req, res) => {
   res.status(200).send({ message: "users", payload: usersList });
 };
  
-const getUserByUsername = (req, res) => {
-  res.send({ message: "one user" });
+const getUserByUsername = async (req, res) => {
+  let username = req.params.username;
+  let user = await User.find({username:username})
+  if(user.length!==0){
+      res.status(200).send({message:'user found',payload:user})
+  }else{
+      res.send({message:'user not found'})
+  }
 };
  
 //Create new User
@@ -68,15 +74,15 @@ const updateUser = async (req, res) => {
   res.status(200).send({ message: "User modified", payload: user });
 };
  
-const removeUser = (req, res) => {
+const removeUser =async  (req, res) => {
+  let username = req.params.username
+  let deletedUser = await User.findOneAndDelete({username:username})
+  if(deletedUser===null){
+    return res.send({message:"User not found"})
+  }
   res.send({ message: "user removed" });
 };
- 
- 
- 
-const getSensitiveData=(req,res)=>{
-  res.send({message:"User's sensitve data is here"})
-}
+
 //export
 module.exports = {
   getUsers,
@@ -84,7 +90,6 @@ module.exports = {
   createUser,
   updateUser,
   removeUser,
-  loginUser,
-  getSensitiveData
+  loginUser
 };
  

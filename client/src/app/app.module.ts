@@ -13,7 +13,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { StatusComponent } from './status/status.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { authInterceptor } from './auth.interceptor';
 import { NgToastModule } from 'ng-angular-popup';
 
@@ -28,8 +27,7 @@ import { NgToastModule } from 'ng-angular-popup';
     FooterComponent,
     LoginComponent,
     StatusComponent,
-    PagenotfoundComponent,
-    ConfirmationComponent
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

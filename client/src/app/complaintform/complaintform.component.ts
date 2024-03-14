@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, } from '@angular/forms'
 import { Router } from '@angular/router';
-import { Customer } from '../models/Customer';
+import { Complaint } from '../models/complaint';
 import { ComplaintService } from '../../services/complaint.service';
 
 @Component({
@@ -59,9 +59,7 @@ export class ComplaintformComponent {
   getAllComplaints() {
     this.complaintService.getComplaints().subscribe((res) => {
       this.complaintsList = res.payload;
-      console.log(this.complaintsList)
       this.currentComplaint = this.complaintsList[this.complaintsList.length - 1];
-      console.log(this.currentComplaint)
       this.changeStatus()
     })
   }
@@ -80,9 +78,9 @@ export class ComplaintformComponent {
 
   onSubmitComplaint() {
     let { fname, lname, email, phno, date, reason, details } = this.complaintForm.value;
-    let newCustomer = new Customer(fname, lname, email, phno, date, reason, details);
+    let newComplaint = new Complaint(fname, lname, email, phno, date, reason, details);
     if (this.complaintForm.status === 'VALID') {
-      this.complaintService.addComplaint(newCustomer).subscribe({
+      this.complaintService.addComplaint(newComplaint).subscribe({
         next: (res) => {
           if (res.message === "Complaint created") {
             this.alreadyExisted = false;
@@ -96,7 +94,7 @@ export class ComplaintformComponent {
 
         },
         error: (err) => {
-          console.log("error in Customer creation", err)
+          console.log("error in complaint creation", err)
         }
       })
     }

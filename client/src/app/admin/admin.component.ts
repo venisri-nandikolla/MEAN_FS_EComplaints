@@ -1,6 +1,5 @@
-import { Component ,OnInit,inject, ChangeDetectorRef} from '@angular/core';
+import { Component ,OnInit,inject} from '@angular/core';
 import { ComplaintService } from '../../services/complaint.service';
-import { Customer } from '../models/Customer';
 
 @Component({
   selector: 'app-admin',
@@ -9,7 +8,6 @@ import { Customer } from '../models/Customer';
 })
 export class AdminComponent implements OnInit {
   compliantService=inject(ComplaintService)
-  cdr= inject (ChangeDetectorRef)
   complaints:any[];
   status:boolean=true;
   openStatus:string;
@@ -32,9 +30,9 @@ onClose(id:string,complaint:any){
     error:(err)=>{console.log(err)}});
 }
 
-onOpen(id:string,Complaint:any){
-  Complaint['status'] = "Opened";
-  this.compliantService.updateComplaint(id,Complaint).subscribe({
+onOpen(id:string,complaint:any){
+  complaint['status'] = "Opened";
+  this.compliantService.updateComplaint(id,complaint).subscribe({
     next:(res)=>{
       console.log(res);
     },

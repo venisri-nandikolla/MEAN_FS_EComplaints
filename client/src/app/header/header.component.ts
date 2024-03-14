@@ -8,7 +8,7 @@ import { UserService } from '../../services/user.service';
 })
 export class HeaderComponent implements OnInit {
     
-     userService= inject(UserService)
+    userService= inject(UserService)
    
     status:boolean;
     ngOnInit():void{

@@ -20,6 +20,4 @@ export class AdminService {
 
   }
 
-
-  constructor() { }
 }

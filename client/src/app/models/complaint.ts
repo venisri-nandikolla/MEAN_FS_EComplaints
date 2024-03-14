@@ -1,4 +1,4 @@
-export class Customer{
+export class Complaint{
     constructor(public fname?:any,
         public lname?:any,
         public email?:any,

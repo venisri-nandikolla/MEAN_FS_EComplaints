@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AdminService } from '../../services/admin.service';
@@ -12,7 +12,7 @@ import { NgToastService } from 'ng-angular-popup';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   fb: FormBuilder = inject(FormBuilder);
   userService = inject(UserService);
   adminService= inject(AdminService);
@@ -35,14 +35,11 @@ userCredentials:FormGroup
  
   onSubmitUser() {
    
-    console.log(this.userCredentials.value);
-   
    const formData=this.userCredentials.value;
  
    if(formData.loginType==='user'){
-    this.userService.userLogin(this.userCredentials.value).subscribe(
-      (res) => {
-        console.log("user login",res)
+    this.userService.userLogin(this.userCredentials.value).subscribe({
+      next:(res) => {
         if (res.message === 'login success') {
           //store token in local/session storage
           localStorage.setItem('token', res.token)
@@ -64,16 +61,15 @@ userCredentials:FormGroup
             userCredErrMsg:res.message
           }
         }
-      }, (error) => {
+      }, error:(error) => {
         console.log('err in user login', error.message)
       }
-    )
+   })
    }
  
    else{
-    this.adminService.userAdminLogin(this.userCredentials.value).subscribe(
-      (res) => {
-        console.log("admin login",res)
+    this.adminService.userAdminLogin(this.userCredentials.value).subscribe({
+      next:(res) => {
         if (res.message === 'login success') {
           //store token in local/session storage
           localStorage.setItem('token', res.token)
@@ -95,10 +91,10 @@ userCredentials:FormGroup
             userCredErrMsg:res.message
           }
         }
-      }, (error) => {
+      }, error:(error) => {
         console.log('err in admin login', error)
       }
-    )
+   })
    }
    
   }

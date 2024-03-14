@@ -21,7 +21,7 @@ app.use(exp.static(path.join(__dirname,'../client/dist/project/browser')))
 
 
 //import api
-const userApp=require('./APIs/user-api');
+const userApp = require('./APIs/user-api');
 const adminApp = require('./APIs/admin-api');
 const complaintApp = require('./APIs/complaint-api')
 //forward req to userApp when path starts with '/user-api'

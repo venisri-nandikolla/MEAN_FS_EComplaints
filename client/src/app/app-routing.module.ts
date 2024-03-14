@@ -9,7 +9,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { StatusComponent } from './status/status.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { protectGuard } from './protect.guard';
 
 const routes: Routes = [{
@@ -42,11 +41,6 @@ const routes: Routes = [{
 }, {
   path: 'status',
   component: StatusComponent,canActivate:[protectGuard]
-},
-
-{
-  path:'confirmation',
-  component:ConfirmationComponent,canActivate:[protectGuard]
 },
  {
   path: '',
